@@ -1,0 +1,26 @@
+{
+    "id": "79C59172",
+    "path": "/data/mesomics/work/mesomics2/lipikal/lipikal-2025/MESOMICS/R/run_1to3.R",
+    "project_path": "R/run_1to3.R",
+    "type": "r_source",
+    "hash": "1547072769",
+    "contents": "",
+    "dirty": false,
+    "created": 1755532869983.0,
+    "source_on_save": false,
+    "relative_order": 6,
+    "properties": {
+        "source_window_id": "",
+        "Source": "Source",
+        "cursorPosition": "71,28",
+        "scrollLine": "52"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1755533934,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1755533934438,
+    "read_only": false,
+    "read_only_alternatives": []
+}

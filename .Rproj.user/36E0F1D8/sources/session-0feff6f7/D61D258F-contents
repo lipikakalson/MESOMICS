@@ -1,0 +1,75 @@
+#' Run Steps 1→2→3 (add sample → run MOFA → plot per-model PDFs)
+#'
+#' @description
+#' Pipeline wrapper:
+#' \enumerate{
+#'   \item \code{add_sample_to_mofa()} — writes updated .RData to \code{inputs_dir}
+#'   \item \code{run_mofa()} — writes \code{MOFA-<sample>.hdf5} to \code{models_dir}
+#'   \item \code{plot_test_samples()} — writes per-model PDFs to \code{models_dir/plots}
+#' }
+#'
+#' @param test_matrix_path Character vector of CSV paths (first column = gene IDs).
+#' @param mofa_dir Directory containing MOFA .RData inputs (default "data/").
+#' @param value_data_types MOFA object names to update; same length as `test_matrix_path`
+#'   (default `c("D_exprB_MOFA")`).
+#' @param inputs_dir Output dir for Step 1; also used as `inputs_dir` for Step 2 (default "output/").
+#' @param models_dir Output dir for Step 2; Step 3 reads from here (default "output/").
+#' @param mesomics_csv Path to MESOMICS_latent_factors.csv
+#'   (default "/data/mesomics/work/mesomics2/drevetg/MOFA_integration/MESOMICS_latent_factors.csv").
+#' @param group MOFA group for plotting (default "group1").
+#'
+#' @return Invisibly, a list with:
+#' \itemize{
+#'   \item step1_files  — vector of .RData files in `inputs_dir`
+#'   \item step2_status — named logical vector from run_mofa()
+#'   \item step3_pdfs   — character vector of written PDF paths
+#' }
+#' @export
+run_1to3 <- function(
+    test_matrix_path,
+    mofa_dir        = "data/",
+    value_data_types = c("D_exprB_MOFA"),
+    inputs_dir      = "output/",
+    models_dir      = "output/",
+    mesomics_csv    = "/data/mesomics/work/mesomics2/drevetg/MOFA_integration/MESOMICS_latent_factors.csv",
+    group           = "group1"
+) {
+  if (!dir.exists(inputs_dir)) dir.create(inputs_dir, recursive = TRUE, showWarnings = FALSE)
+  if (!dir.exists(models_dir)) dir.create(models_dir, recursive = TRUE, showWarnings = FALSE)
+
+  # Step 1
+  print('Step 1')
+  add_sample_to_mofa(
+    test_matrix_path = test_matrix_path,
+    mofa_dir         = mofa_dir,
+    value_data_types = value_data_types,
+    outdir           = inputs_dir
+  )
+  step1_files <- list.files(inputs_dir, pattern = "\\.RData$", full.names = TRUE)
+
+  print('------------------------------------------------------------------------------------------------------------------')
+  print('------------------------------------------------------------------------------------------------------------------')
+
+  # Step 2
+  print('Step 2')
+  step2_status <- run_mofa(
+    inputs_dir = inputs_dir,
+    outdir     = models_dir
+  )
+
+  print('------------------------------------------------------------------------------------------------------------------')
+  print('------------------------------------------------------------------------------------------------------------------')
+
+  # Step 3 (plot to models_dir/plots by default)
+  print('Step 3')
+  step3_pdfs <- plot_test_samples(
+    models_dir     = models_dir,
+    MESOMICS.LFs   = mesomics_csv,
+    group          = group  )
+
+  invisible(list(
+    step1_files  = step1_files,
+    step2_status = step2_status,
+    step3_pdfs   = step3_pdfs
+  ))
+}

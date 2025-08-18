@@ -1,0 +1,26 @@
+{
+    "id": "A0F5AD7B",
+    "path": "/data/mesomics/work/mesomics2/lipikal/lipikal-2025/MESOMICS/R/extracting_LFs-test_samples.R",
+    "project_path": "R/extracting_LFs-test_samples.R",
+    "type": "r_source",
+    "hash": "0",
+    "contents": "",
+    "dirty": false,
+    "created": 1755532871018.0,
+    "source_on_save": false,
+    "relative_order": 7,
+    "properties": {
+        "source_window_id": "",
+        "Source": "Source",
+        "cursorPosition": "13,18",
+        "scrollLine": "0"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1755532958,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1755532958407,
+    "read_only": false,
+    "read_only_alternatives": []
+}

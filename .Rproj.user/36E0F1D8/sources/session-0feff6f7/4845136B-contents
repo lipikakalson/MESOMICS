@@ -1,0 +1,98 @@
+#'  Step 3: Plot test sample on MESOMICS MOFA (per model)
+#'
+#' For each \code{MOFA-*.hdf5} model, selects two MOFA latent factors by correlation to MESOMICS axes,
+#' builds a 2D Pareto triangle (3 archetypes), and saves a PDF scatter with the test sample highlighted.
+#'
+#' @param models_dir Directory containing MOFA-*.hdf5 from 'run_mofa'.
+#' @param MESOMICS.LFs Path to MESOMICS_latent_factors.csv.
+#' @param out_plot_dir output plots.
+#' @param group MOFA group name (default "group1").
+#' @param n_cor_rows Use first N rows for correlation (default 120).
+#' @param highlight_index test sample row (default 121).
+#' @return Invisibly returns character vector of written PDF paths.
+#' @export
+#'
+plot_test_samples <- function(
+    models_dir      = "output/",
+    MESOMICS.LFs    = system.file("data", "MESOMICS_latent_factors.csv", package = "MESOMICS"),
+    out_plot_dir    = file.path(models_dir, "plots"),
+    group           = "group1",
+    n_cor_rows      = 120,
+    highlight_index = 121
+
+) {
+
+  if (!dir.exists(models_dir)) stop("models_dir does not exist: ", models_dir)
+  if (!file.exists(MESOMICS.LFs)) stop("MESOMICS.LFs not found: ", MESOMICS.LFs)
+  if (!dir.exists(out_plot_dir)) dir.create(out_plot_dir, recursive = TRUE, showWarnings = FALSE)
+
+  model_files <- list.files(models_dir, pattern = "\\.hdf5$", full.names = TRUE)
+  if (!length(model_files)) stop("No .hdf5 files in: ", models_dir)
+
+  MESOMICS.LFs <- utils::read.csv(MESOMICS.LFs)
+
+  written <- character(0)
+  for (i in seq_along(model_files)) {
+    MOFAmodel <- MOFA2::load_model(model_files[i])
+
+    # same logic: pull factors; you used @ slot, keep that style
+    MOFA.LFs <- as.data.frame(MOFAmodel@expectations$Z[[group]])
+
+    # same logic: correlate first 120 rows vs MESOMICS cols 4:5
+    # (tiny safety: cap at available rows)
+    cor.tmp  <- cor(MOFA.LFs[1:120, ],
+                           MESOMICS.LFs[, 4:5])
+
+    LFs.tmp  <- apply(abs(cor.tmp), 2, which.max)
+    LFs.tmp2 <- tibble::as_tibble(MOFA.LFs[, LFs.tmp])
+
+    if (cor.tmp[LFs.tmp[1], 1] < 0) LFs.tmp2[, 1] <- -LFs.tmp2[, 1]
+    if (cor.tmp[LFs.tmp[2], 2] < 0) LFs.tmp2[, 2] <- -LFs.tmp2[, 2]
+    colnames(LFs.tmp2) <- c("Morphological.factor", "Immune.response.factor")
+
+    # same logic: Pareto archetypes (k = 3)
+    fit <- ParetoTI::k_fit_pch(
+      t(LFs.tmp2),
+      ks              = 3,
+      check_installed = TRUE,
+      bootstrap       = FALSE,
+      volume_ratio    = "t_ratio"
+    )
+
+    arc <- as.data.frame(fit$XC) # 2 x 3; columns are archetypes
+    colnames(arc) <- c("Arc1","Arc2","Arc3")
+
+    # plotting (same layers/params as your script; fully qualified calls)
+    p <- ggplot2::ggplot(LFs.tmp2, ggplot2::aes(x = Morphological.factor, y = Immune.response.factor)) +
+      ggplot2::geom_point(cex = 2) +
+      ggplot2::geom_segment(
+        data = as.data.frame(t(arc)),
+        ggplot2::aes(
+          x = unlist(arc[1,]), xend = unlist(arc[1, c(2, 3, 1)]),
+          y = unlist(arc[2,]), yend = unlist(arc[2, c(2, 3, 1)])
+        ),
+        col = "lightblue", cex = 2
+      ) +
+      ggplot2::geom_point(
+        data = as.data.frame(t(arc)),
+        col = scales::alpha(c("#B81330", "#58839D", "#79A960"), 0.7),
+        cex = 5
+      ) +
+      ggplot2::geom_text(
+        data = as.data.frame(t(arc)),
+        label = 1:3, col = "black", cex = 4
+      ) +
+      gghighlight::gghighlight(seq_len(nrow(LFs.tmp2)) == highlight_index) +
+      ggplot2::theme_bw()
+
+    # save
+    sample_id <- sub("\\.hdf5$", "", basename(model_files[i]))
+    out_pdf   <- file.path(out_plot_dir, paste0(sample_id, ".pdf"))
+    ggplot2::ggsave(out_pdf, plot = p, width = 8, height = 6)
+    cat("Processed model:", basename(model_files[i]), "\n")
+
+    written <- c(written, out_pdf)
+  }
+
+  invisible(written)
+}
