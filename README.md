@@ -16,6 +16,7 @@ which python
 #### Defining data paths
 ```
 library(MESOMICS)
+
 mofa_dir <- system.file("extdata", package = "MESOMICS")
 meso_csv <- system.file("extdata", "MESOMICS_latent_factors.csv", package = "MESOMICS")
 test_csv <- system.file("extdata", "test.csv", package = "MESOMICS")
