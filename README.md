@@ -29,7 +29,7 @@ MESOMICS::plot_test_samples(python_bin = '/path/to/envs/mofa_env/bin/python')
 
 #### Pipeline wrapper for Steps 1-3
 ```
-MESOMICS::run_1to3(test_matrix_path = "inst/extdata/test.csv", mofa_dir = mofa_dir, python_bin = python_path)
+MESOMICS::run_1to3(test_matrix_path = "inst/extdata/test.csv", python_bin = python_path)
 ```
 #### All sample plot
 ```
