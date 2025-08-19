@@ -56,7 +56,7 @@ MESOMICS::run_mofa(
 ```
 print('Starting Step 3')
 MESOMICS::plot_test_samples(
-  models_dir   = out_dir,     # <— where MOFA-*.hdf5 live
+  models_dir   = out_dir,     
   MESOMICS.LFs = meso_csv,
   python_bin   = python_path
 )
