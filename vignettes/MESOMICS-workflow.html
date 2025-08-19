@@ -365,7 +365,7 @@ environment.</p>
 <span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a><span class="fu">stopifnot</span>(meso_csv <span class="sc">!=</span> <span class="st">&quot;&quot;</span>, test_csv <span class="sc">!=</span> <span class="st">&quot;&quot;</span>)</span>
 <span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a></span>
 <span id="cb2-7"><a href="#cb2-7" tabindex="-1"></a></span>
-<span id="cb2-8"><a href="#cb2-8" tabindex="-1"></a>out_dir <span class="ot">&lt;-</span> <span class="fu">file.path</span>(<span class="fu">tempdir</span>(), <span class="st">&quot;mesomics-vignette&quot;</span>)</span>
+<span id="cb2-8"><a href="#cb2-8" tabindex="-1"></a>out_dir <span class="ot">&lt;-</span> <span class="fu">file.path</span>(<span class="st">&#39;.&#39;</span>, <span class="st">&quot;mesomics-vignette&quot;</span>)</span>
 <span id="cb2-9"><a href="#cb2-9" tabindex="-1"></a><span class="fu">dir.create</span>(out_dir, <span class="at">recursive =</span> <span class="cn">TRUE</span>, <span class="at">showWarnings =</span> <span class="cn">FALSE</span>)</span>
 <span id="cb2-10"><a href="#cb2-10" tabindex="-1"></a>out_dir</span>
 <span id="cb2-11"><a href="#cb2-11" tabindex="-1"></a></span>
@@ -396,30 +396,37 @@ environment.</p>
 <h2>Step 3: Per-model plots</h2>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="fu">print</span>(<span class="st">&#39;Starting Step 3&#39;</span>)</span>
 <span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a>MESOMICS<span class="sc">::</span><span class="fu">plot_test_samples</span>(</span>
-<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a>  <span class="at">models_dir   =</span> out_dir,     <span class="co"># &lt;— where MOFA-*.hdf5 live</span></span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a>  <span class="at">models_dir   =</span> out_dir,     </span>
 <span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a>  <span class="at">MESOMICS.LFs =</span> meso_csv,</span>
 <span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a>  <span class="at">python_bin   =</span> python_path</span>
 <span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a>)</span></code></pre></div>
 </div>
-<div id="all-sample-plot" class="section level2">
-<h2>All sample plot</h2>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a>MESOMICS<span class="sc">::</span><span class="fu">plot_test_all_samples</span>(</span>
-<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a>  <span class="at">models_dir   =</span> out_dir,</span>
-<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a>  <span class="at">mesomics_csv =</span> meso_csv,</span>
-<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a>  <span class="at">out_pdf      =</span> <span class="fu">file.path</span>(out_dir, <span class="st">&quot;plots&quot;</span>, <span class="st">&quot;all_test_samples.pdf&quot;</span>),</span>
-<span id="cb6-5"><a href="#cb6-5" tabindex="-1"></a>  <span class="at">python_bin   =</span> python_path</span>
-<span id="cb6-6"><a href="#cb6-6" tabindex="-1"></a>)</span></code></pre></div>
 </div>
+<div id="or" class="section level1">
+<h1>OR</h1>
 <div id="pipeline-wrapper-for-step-1-to-3" class="section level2">
 <h2>Pipeline wrapper for Step 1 to 3:</h2>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a>MESOMICS<span class="sc">::</span><span class="fu">run_1to3</span>(</span>
-<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a>  <span class="at">test_matrix_path =</span> test_csv,</span>
-<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a>  <span class="at">mofa_dir         =</span> mofa_dir,</span>
-<span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a>  <span class="at">inputs_dir       =</span> out_dir,</span>
-<span id="cb7-5"><a href="#cb7-5" tabindex="-1"></a>  <span class="at">models_dir       =</span> out_dir,</span>
-<span id="cb7-6"><a href="#cb7-6" tabindex="-1"></a>  <span class="at">mesomics_csv     =</span> meso_csv,</span>
-<span id="cb7-7"><a href="#cb7-7" tabindex="-1"></a>  <span class="at">python_bin      =</span> python_path</span>
-<span id="cb7-8"><a href="#cb7-8" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a>MESOMICS<span class="sc">::</span><span class="fu">run_1to3</span>(</span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a>  <span class="at">test_matrix_path =</span> test_csv,</span>
+<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a>  <span class="at">mofa_dir         =</span> mofa_dir,</span>
+<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a>  <span class="at">inputs_dir       =</span> out_dir,</span>
+<span id="cb6-5"><a href="#cb6-5" tabindex="-1"></a>  <span class="at">models_dir       =</span> out_dir,</span>
+<span id="cb6-6"><a href="#cb6-6" tabindex="-1"></a>  <span class="at">mesomics_csv     =</span> meso_csv,</span>
+<span id="cb6-7"><a href="#cb6-7" tabindex="-1"></a>  <span class="at">python_bin      =</span> python_path</span>
+<span id="cb6-8"><a href="#cb6-8" tabindex="-1"></a>)</span></code></pre></div>
+</div>
+<div id="all-sample-plot" class="section level2">
+<h2>All sample plot</h2>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a>MESOMICS<span class="sc">::</span><span class="fu">plot_test_all_samples</span>(</span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a>  <span class="at">models_dir   =</span> out_dir,</span>
+<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a>  <span class="at">mesomics_csv =</span> meso_csv,</span>
+<span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a>  <span class="at">out_pdf      =</span> <span class="fu">file.path</span>(out_dir, <span class="st">&quot;plots&quot;</span>, <span class="st">&quot;all_test_samples.pdf&quot;</span>),</span>
+<span id="cb7-5"><a href="#cb7-5" tabindex="-1"></a>  <span class="at">python_bin   =</span> python_path</span>
+<span id="cb7-6"><a href="#cb7-6" tabindex="-1"></a>)</span></code></pre></div>
+</div>
+<div id="mofa-latent-factors-of-test-samples" class="section level2">
+<h2>MOFA Latent factors of test samples</h2>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a>MESOMICS<span class="sc">::</span><span class="fu">collect_testsamples_factors</span>(<span class="at">models_dir   =</span> out_dir)</span></code></pre></div>
 </div>
 </div>
 

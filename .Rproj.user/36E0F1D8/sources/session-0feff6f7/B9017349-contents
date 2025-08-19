@@ -47,7 +47,7 @@ test_csv <- system.file("extdata", "test.csv", package = "MESOMICS")
 stopifnot(meso_csv != "", test_csv != "")
 
 
-out_dir <- file.path(tempdir(), "mesomics-vignette")
+out_dir <- file.path('.', "mesomics-vignette")
 dir.create(out_dir, recursive = TRUE, showWarnings = FALSE)
 out_dir
 
@@ -84,22 +84,13 @@ MESOMICS::run_mofa(
 ```{r}
 print('Starting Step 3')
 MESOMICS::plot_test_samples(
-  models_dir   = out_dir,     # <— where MOFA-*.hdf5 live
+  models_dir   = out_dir,     
   MESOMICS.LFs = meso_csv,
   python_bin   = python_path
 )
 
 ```
-
-## All sample plot
-```{r}
-MESOMICS::plot_test_all_samples(
-  models_dir   = out_dir,
-  mesomics_csv = meso_csv,
-  out_pdf      = file.path(out_dir, "plots", "all_test_samples.pdf"),
-  python_bin   = python_path
-)
-```
+# OR
 
 ## Pipeline wrapper for Step 1 to 3:
 ```{r}
@@ -112,5 +103,22 @@ MESOMICS::run_1to3(
   python_bin      = python_path
 )
 ```
+
+## All sample plot
+```{r}
+MESOMICS::plot_test_all_samples(
+  models_dir   = out_dir,
+  mesomics_csv = meso_csv,
+  out_pdf      = file.path(out_dir, "plots", "all_test_samples.pdf"),
+  python_bin   = python_path
+)
+```
+
+## MOFA Latent factors of test samples
+```{r}
+MESOMICS::collect_testsamples_factors(models_dir   = out_dir)
+```
+
+
 
 

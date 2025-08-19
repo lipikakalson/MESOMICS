@@ -14,7 +14,7 @@ knitr::opts_knit$set(progress = TRUE, verbose = TRUE)
 # stopifnot(meso_csv != "", test_csv != "")
 # 
 # 
-# out_dir <- file.path(tempdir(), "mesomics-vignette")
+# out_dir <- file.path('.', "mesomics-vignette")
 # dir.create(out_dir, recursive = TRUE, showWarnings = FALSE)
 # out_dir
 # 
@@ -44,19 +44,11 @@ knitr::opts_knit$set(progress = TRUE, verbose = TRUE)
 ## -----------------------------------------------------------------------------
 # print('Starting Step 3')
 # MESOMICS::plot_test_samples(
-#   models_dir   = out_dir,     # <— where MOFA-*.hdf5 live
+#   models_dir   = out_dir,
 #   MESOMICS.LFs = meso_csv,
 #   python_bin   = python_path
 # )
 # 
-
-## -----------------------------------------------------------------------------
-# MESOMICS::plot_test_all_samples(
-#   models_dir   = out_dir,
-#   mesomics_csv = meso_csv,
-#   out_pdf      = file.path(out_dir, "plots", "all_test_samples.pdf"),
-#   python_bin   = python_path
-# )
 
 ## -----------------------------------------------------------------------------
 # MESOMICS::run_1to3(
@@ -67,4 +59,15 @@ knitr::opts_knit$set(progress = TRUE, verbose = TRUE)
 #   mesomics_csv     = meso_csv,
 #   python_bin      = python_path
 # )
+
+## -----------------------------------------------------------------------------
+# MESOMICS::plot_test_all_samples(
+#   models_dir   = out_dir,
+#   mesomics_csv = meso_csv,
+#   out_pdf      = file.path(out_dir, "plots", "all_test_samples.pdf"),
+#   python_bin   = python_path
+# )
+
+## -----------------------------------------------------------------------------
+# MESOMICS::collect_testsamples_factors(models_dir   = out_dir)
 

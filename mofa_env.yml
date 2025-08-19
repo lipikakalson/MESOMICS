@@ -1,9 +1,9 @@
-name mofa_env
-channels
+name: mofa_env
+channels:
   - conda-forge
   - bioconda
   - defaults
-dependencies
+dependencies:
   - _libgcc_mutex=0.1
   - _openmp_mutex=4.5
   - bzip2=1.0.8
@@ -27,7 +27,7 @@ dependencies
   - tk=8.6.13
   - wheel=0.44.0
   - xz=5.2.6
-  - pip
+  - pip:
       - anndata==0.8.0
       - fbpca==1.0
       - geosketch==1.3
