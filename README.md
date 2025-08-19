@@ -12,6 +12,7 @@ conda activate mofa_env
 which python
 # For example: /home/user/miniconda3/envs/mofa_env/bin/python
 ```
+#### Rstudio
 #### Defining data paths
 ```
 mofa_dir <- system.file("extdata", package = "MESOMICS")
