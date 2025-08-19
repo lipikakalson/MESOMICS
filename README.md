@@ -4,6 +4,15 @@ remotes::install_github("lipikakalson/MESOMICS", build_vignettes = FALSE)
 ```
 
 ### Workflow
+
+#### Step 0 : On Terminal
+```
+conda env create -f mofa_env.yml
+conda activate mofa_env
+which python
+# For example: /home/user/miniconda3/envs/mofa_env/bin/python
+```
+
 #### Step 1
 ```
 MESOMICS::add_sample_to_mofa(test_matrix_path = "inst/extdata/test.csv", python_bin = '/path/to/envs/mofa_env/bin/python')
