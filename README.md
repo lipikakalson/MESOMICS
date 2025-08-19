@@ -24,7 +24,7 @@ test_csv <- system.file("extdata", "test.csv", package = "MESOMICS")
 stopifnot(meso_csv != "", test_csv != "")
 
 
-out_dir <- file.path('.', "mesomics-vignette")
+out_dir <- file.path('.', "output")
 dir.create(out_dir, recursive = TRUE, showWarnings = FALSE)
 out_dir
 
