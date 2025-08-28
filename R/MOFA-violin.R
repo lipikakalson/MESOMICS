@@ -13,7 +13,10 @@
 #' @return Invisible NULL; produces a plot.
 #' @export
 
-plot_factor_violins <- function(meso_factors_path, test_factors_path, out_pdf = NULL, python_bin) {
+plot_factor_violins <- function(meso_factors_path,
+                                test_factors_path, out_pdf = NULL,
+                                python_bin) {
+
   reticulate::use_python(python_bin, required = TRUE)
 
   meso <- read.csv(meso_factors_path, row.names = 1, check.names = FALSE)
