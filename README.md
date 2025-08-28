@@ -1,5 +1,5 @@
 ## Overview
-This R package provides utilities to project new test samples onto MESOMICS latent factor spae (from MOFA), and visualise their positions, and quickly check for batch effects, outliers and biological comparability.
+This R package provides utilities to project new test samples onto MESOMICS latent factor space (from MOFA), and visualise their positions, and quickly check for batch effects, outliers and biological comparability.
 
 ### To install the package
 ```
