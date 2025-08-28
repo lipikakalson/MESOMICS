@@ -26,9 +26,6 @@ plot_factor_violins <- function(meso_factors_path,
   meso_factor_cols <- colnames(meso)[!colnames(meso) %in% c("Cohort", "Sample")]
   test_factor_cols <- colnames(test)[!colnames(test) %in% "Run"]
 
-  print(test_factor_cols)
-  print(meso_factor_cols)
-
   # Subset to factor columns
   meso <- meso[, meso_factor_cols, drop = FALSE]
   test <- test[, test_factor_cols, drop = FALSE]
