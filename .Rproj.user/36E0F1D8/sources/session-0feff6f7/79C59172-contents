@@ -9,13 +9,12 @@
 #' }
 #'
 #' @param test_matrix_path Character vector of CSV paths (first column = gene IDs).
-#' @param mofa_dir Directory containing MOFA .RData inputs (default "data/").
+#' @param mofa_dir Directory containing MOFA .RData inputs.
 #' @param value_data_types MOFA object names to update; same length as `test_matrix_path`
-#'   (default `c("D_exprB_MOFA")`).
-#' @param inputs_dir Output dir for Step 1; also used as `inputs_dir` for Step 2 (default "output/").
-#' @param models_dir Output dir for Step 2; Step 3 reads from here (default "output/").
+#' @param inputs_dir Output dir for Step 1; also used as `inputs_dir` for Step 2 .
+#' @param models_dir Output dir for Step 2; Step 3 reads from here.
 #' @param mesomics_csv Path to MESOMICS_latent_factors.csv
-#'   (default "/data/mesomics/work/mesomics2/drevetg/MOFA_integration/MESOMICS_latent_factors.csv").
+#'
 #' @param group MOFA group for plotting (default "group1").
 #' @param python_bin Python environment
 #' @return Invisibly, a list with:
@@ -33,7 +32,8 @@ run_1to3 <- function(
     models_dir      = "output/",
     mesomics_csv    = system.file("extdata", "MESOMICS_latent_factors.csv", package = "MESOMICS"),
     group           = "group1",
-    python_bin
+    python_bin,
+    out_ternary_file = file.path(models_dir, "plots", "ternary_plot_all_samples.svg")
 ) {
   if (!dir.exists(inputs_dir)) dir.create(inputs_dir, recursive = TRUE, showWarnings = FALSE)
   if (!dir.exists(models_dir)) dir.create(models_dir, recursive = TRUE, showWarnings = FALSE)
@@ -66,10 +66,11 @@ run_1to3 <- function(
   # Step 3 (plot to models_dir/plots by default)
   print('Step 3')
   step3_pdfs <- plot_test_samples(
-    models_dir     = models_dir,
-    MESOMICS.LFs   = mesomics_csv,
-    group          = group,
-    python_bin  = python_bin)
+    models_dir       = models_dir,
+    MESOMICS.LFs     = mesomics_csv,
+    group            = group,
+    python_bin       = python_bin,
+    out_ternary_file = out_ternary_file)
 
   invisible(list(
     step1_files  = step1_files,

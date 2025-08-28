@@ -3,7 +3,7 @@
     "path": "/data/mesomics/work/mesomics2/lipikal/lipikal-2025/MESOMICS/vignettes/MESOMICS-workflow.Rmd",
     "project_path": "vignettes/MESOMICS-workflow.Rmd",
     "type": "r_markdown",
-    "hash": "0",
+    "hash": "2871220580",
     "contents": "",
     "dirty": false,
     "created": 1755531409152.0,
@@ -12,15 +12,15 @@
     "properties": {
         "source_window_id": "",
         "Source": "Source",
-        "cursorPosition": "81,0",
-        "scrollLine": "71"
+        "cursorPosition": "73,21",
+        "scrollLine": "64"
     },
     "folds": "",
-    "lastKnownWriteTime": 1755592117,
+    "lastKnownWriteTime": 1756380979,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1755592117553,
+    "last_content_update": 1756380979665,
     "read_only": false,
     "read_only_alternatives": []
 }

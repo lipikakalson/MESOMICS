@@ -360,17 +360,18 @@ environment.</p>
 <p>Example data paths</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a>mofa_dir <span class="ot">&lt;-</span> <span class="fu">system.file</span>(<span class="st">&quot;extdata&quot;</span>, <span class="at">package =</span> <span class="st">&quot;MESOMICS&quot;</span>)</span>
 <span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a>meso_csv <span class="ot">&lt;-</span> <span class="fu">system.file</span>(<span class="st">&quot;extdata&quot;</span>, <span class="st">&quot;MESOMICS_latent_factors.csv&quot;</span>, <span class="at">package =</span> <span class="st">&quot;MESOMICS&quot;</span>)</span>
-<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a>test_csv <span class="ot">&lt;-</span> <span class="fu">system.file</span>(<span class="st">&quot;extdata&quot;</span>, <span class="st">&quot;test.csv&quot;</span>, <span class="at">package =</span> <span class="st">&quot;MESOMICS&quot;</span>)</span>
-<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a></span>
-<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a><span class="fu">stopifnot</span>(meso_csv <span class="sc">!=</span> <span class="st">&quot;&quot;</span>, test_csv <span class="sc">!=</span> <span class="st">&quot;&quot;</span>)</span>
-<span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a>test_csv <span class="ot">&lt;-</span> <span class="fu">system.file</span>(<span class="st">&quot;extdata&quot;</span>, <span class="st">&quot;test-normalised-gene_count.csv&quot;</span>, <span class="at">package =</span> <span class="st">&quot;MESOMICS&quot;</span>)</span>
+<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a>meso_gc <span class="ot">&lt;-</span> <span class="fu">system.file</span>(<span class="st">&quot;extdata&quot;</span>, <span class="st">&quot;Mesomics-normalised-gene_count.csv&quot;</span>, <span class="at">package =</span> <span class="st">&quot;MESOMICS&quot;</span>)</span>
+<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a><span class="fu">stopifnot</span>(meso_csv <span class="sc">!=</span> <span class="st">&quot;&quot;</span>, test_csv <span class="sc">!=</span> <span class="st">&quot;&quot;</span>)</span>
 <span id="cb2-7"><a href="#cb2-7" tabindex="-1"></a></span>
-<span id="cb2-8"><a href="#cb2-8" tabindex="-1"></a>out_dir <span class="ot">&lt;-</span> <span class="fu">file.path</span>(<span class="st">&#39;.&#39;</span>, <span class="st">&quot;mesomics-vignette&quot;</span>)</span>
-<span id="cb2-9"><a href="#cb2-9" tabindex="-1"></a><span class="fu">dir.create</span>(out_dir, <span class="at">recursive =</span> <span class="cn">TRUE</span>, <span class="at">showWarnings =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb2-10"><a href="#cb2-10" tabindex="-1"></a>out_dir</span>
-<span id="cb2-11"><a href="#cb2-11" tabindex="-1"></a></span>
-<span id="cb2-12"><a href="#cb2-12" tabindex="-1"></a><span class="fu">Sys.setenv</span>(<span class="at">MESOMICS_PYTHON =</span> <span class="st">&quot;/path/to/your/env/python&quot;</span>)</span>
-<span id="cb2-13"><a href="#cb2-13" tabindex="-1"></a>python_path <span class="ot">&lt;-</span> <span class="fu">Sys.getenv</span>(<span class="st">&quot;MESOMICS_PYTHON&quot;</span>, <span class="at">unset =</span> <span class="cn">NA</span>)</span></code></pre></div>
+<span id="cb2-8"><a href="#cb2-8" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="#cb2-9" tabindex="-1"></a>out_dir <span class="ot">&lt;-</span> <span class="fu">file.path</span>(<span class="st">&#39;.&#39;</span>, <span class="st">&quot;output&quot;</span>)</span>
+<span id="cb2-10"><a href="#cb2-10" tabindex="-1"></a><span class="fu">dir.create</span>(out_dir, <span class="at">recursive =</span> <span class="cn">TRUE</span>, <span class="at">showWarnings =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb2-11"><a href="#cb2-11" tabindex="-1"></a>out_dir</span>
+<span id="cb2-12"><a href="#cb2-12" tabindex="-1"></a></span>
+<span id="cb2-13"><a href="#cb2-13" tabindex="-1"></a><span class="fu">Sys.setenv</span>(<span class="at">MESOMICS_PYTHON =</span> <span class="st">&quot;/path/to/your/env/python&quot;</span>)</span>
+<span id="cb2-14"><a href="#cb2-14" tabindex="-1"></a>python_path <span class="ot">&lt;-</span> <span class="fu">Sys.getenv</span>(<span class="st">&quot;MESOMICS_PYTHON&quot;</span>, <span class="at">unset =</span> <span class="cn">NA</span>)</span></code></pre></div>
 </div>
 <div id="step-1-add_sample_to_mofa" class="section level2">
 <h2>Step 1: add_sample_to_mofa()</h2>
@@ -383,8 +384,8 @@ environment.</p>
 <span id="cb3-7"><a href="#cb3-7" tabindex="-1"></a>  <span class="at">python_bin       =</span> python_path</span>
 <span id="cb3-8"><a href="#cb3-8" tabindex="-1"></a>)</span></code></pre></div>
 </div>
-<div id="step-2-run_mofa-with-basilisk" class="section level2">
-<h2>Step 2: run_mofa() with basilisk</h2>
+<div id="step-2-run_mofa" class="section level2">
+<h2>Step 2: run_mofa()</h2>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="fu">print</span>(<span class="st">&#39;Starting Step 2&#39;</span>)</span>
 <span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a>MESOMICS<span class="sc">::</span><span class="fu">run_mofa</span>(</span>
 <span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a>  <span class="at">inputs_dir       =</span> out_dir,   <span class="co"># &lt;— where Step 1 wrote .RData</span></span>
@@ -412,21 +413,25 @@ environment.</p>
 <span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a>  <span class="at">inputs_dir       =</span> out_dir,</span>
 <span id="cb6-5"><a href="#cb6-5" tabindex="-1"></a>  <span class="at">models_dir       =</span> out_dir,</span>
 <span id="cb6-6"><a href="#cb6-6" tabindex="-1"></a>  <span class="at">mesomics_csv     =</span> meso_csv,</span>
-<span id="cb6-7"><a href="#cb6-7" tabindex="-1"></a>  <span class="at">python_bin      =</span> python_path</span>
+<span id="cb6-7"><a href="#cb6-7" tabindex="-1"></a>  <span class="at">python_bin       =</span> python_path</span>
 <span id="cb6-8"><a href="#cb6-8" tabindex="-1"></a>)</span></code></pre></div>
-</div>
-<div id="all-sample-plot" class="section level2">
-<h2>All sample plot</h2>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a>MESOMICS<span class="sc">::</span><span class="fu">plot_test_all_samples</span>(</span>
-<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a>  <span class="at">models_dir   =</span> out_dir,</span>
-<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a>  <span class="at">mesomics_csv =</span> meso_csv,</span>
-<span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a>  <span class="at">out_pdf      =</span> <span class="fu">file.path</span>(out_dir, <span class="st">&quot;plots&quot;</span>, <span class="st">&quot;all_test_samples.pdf&quot;</span>),</span>
-<span id="cb7-5"><a href="#cb7-5" tabindex="-1"></a>  <span class="at">python_bin   =</span> python_path</span>
-<span id="cb7-6"><a href="#cb7-6" tabindex="-1"></a>)</span></code></pre></div>
 </div>
 <div id="mofa-latent-factors-of-test-samples" class="section level2">
 <h2>MOFA Latent factors of test samples</h2>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a>MESOMICS<span class="sc">::</span><span class="fu">collect_testsamples_factors</span>(<span class="at">models_dir   =</span> out_dir)</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a>MESOMICS<span class="sc">::</span><span class="fu">collect_testsamples_factors</span>(<span class="at">models_dir   =</span> out_dir)</span></code></pre></div>
+</div>
+<div id="batch-effect---density-curves" class="section level2">
+<h2>Batch effect - Density curves</h2>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a>MESOMICS<span class="sc">::</span><span class="fu">plot_batch_effects</span>(<span class="at">meso_matrix_path =</span> meso_gc, </span>
+<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a>                             <span class="at">test_matrix_path =</span> test_csv, </span>
+<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a>                             <span class="at">python_bin =</span> python_path)</span></code></pre></div>
+</div>
+<div id="mofa-latent-factors-violin-plots-detect-if-test-samples-factor-values-are-far-outside-the-range-of-mesomics-samples" class="section level2">
+<h2>MOFA Latent Factors Violin Plots (detect if test samples’ factor
+values are far outside the range of MESOMICS samples)</h2>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a>MESOMICS<span class="sc">::</span><span class="fu">plot_factor_violins</span>(<span class="at">meso_factors_path =</span> meso_csv, </span>
+<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a>                              <span class="at">test_factors_path =</span> <span class="st">&#39;/output/of/collect_testsamples_factors&#39;</span>,</span>
+<span id="cb9-3"><a href="#cb9-3" tabindex="-1"></a>                              <span class="at">python_bin   =</span> python_path)</span></code></pre></div>
 </div>
 </div>
 

@@ -13,23 +13,22 @@ run_1to3(
   mesomics_csv = system.file("extdata", "MESOMICS_latent_factors.csv", package =
     "MESOMICS"),
   group = "group1",
-  python_bin
+  python_bin,
+  out_ternary_file = file.path(models_dir, "plots", "ternary_plot_all_samples.svg")
 )
 }
 \arguments{
 \item{test_matrix_path}{Character vector of CSV paths (first column = gene IDs).}
 
-\item{mofa_dir}{Directory containing MOFA .RData inputs (default "data/").}
+\item{mofa_dir}{Directory containing MOFA .RData inputs.}
 
-\item{value_data_types}{MOFA object names to update; same length as `test_matrix_path`
-(default `c("D_exprB_MOFA")`).}
+\item{value_data_types}{MOFA object names to update; same length as `test_matrix_path`}
 
-\item{inputs_dir}{Output dir for Step 1; also used as `inputs_dir` for Step 2 (default "output/").}
+\item{inputs_dir}{Output dir for Step 1; also used as `inputs_dir` for Step 2 .}
 
-\item{models_dir}{Output dir for Step 2; Step 3 reads from here (default "output/").}
+\item{models_dir}{Output dir for Step 2; Step 3 reads from here.}
 
-\item{mesomics_csv}{Path to MESOMICS_latent_factors.csv
-(default "/data/mesomics/work/mesomics2/drevetg/MOFA_integration/MESOMICS_latent_factors.csv").}
+\item{mesomics_csv}{Path to MESOMICS_latent_factors.csv}
 
 \item{group}{MOFA group for plotting (default "group1").}
 

@@ -9,12 +9,13 @@ knitr::opts_knit$set(progress = TRUE, verbose = TRUE)
 ## -----------------------------------------------------------------------------
 # mofa_dir <- system.file("extdata", package = "MESOMICS")
 # meso_csv <- system.file("extdata", "MESOMICS_latent_factors.csv", package = "MESOMICS")
-# test_csv <- system.file("extdata", "test.csv", package = "MESOMICS")
+# test_csv <- system.file("extdata", "test-normalised-gene_count.csv", package = "MESOMICS")
+# meso_gc <- system.file("extdata", "Mesomics-normalised-gene_count.csv", package = "MESOMICS")
 # 
 # stopifnot(meso_csv != "", test_csv != "")
 # 
 # 
-# out_dir <- file.path('.', "mesomics-vignette")
+# out_dir <- file.path('.', "output")
 # dir.create(out_dir, recursive = TRUE, showWarnings = FALSE)
 # out_dir
 # 
@@ -57,17 +58,20 @@ knitr::opts_knit$set(progress = TRUE, verbose = TRUE)
 #   inputs_dir       = out_dir,
 #   models_dir       = out_dir,
 #   mesomics_csv     = meso_csv,
-#   python_bin      = python_path
-# )
-
-## -----------------------------------------------------------------------------
-# MESOMICS::plot_test_all_samples(
-#   models_dir   = out_dir,
-#   mesomics_csv = meso_csv,
-#   out_pdf      = file.path(out_dir, "plots", "all_test_samples.pdf"),
-#   python_bin   = python_path
+#   python_bin       = python_path
 # )
 
 ## -----------------------------------------------------------------------------
 # MESOMICS::collect_testsamples_factors(models_dir   = out_dir)
+
+## -----------------------------------------------------------------------------
+# MESOMICS::plot_batch_effects(meso_matrix_path = meso_gc,
+#                              test_matrix_path = test_csv,
+#                              python_bin = python_path)
+# 
+
+## -----------------------------------------------------------------------------
+# MESOMICS::plot_factor_violins(meso_factors_path = meso_csv,
+#                               test_factors_path = '/output/of/collect_testsamples_factors',
+#                               python_bin   = python_path)
 

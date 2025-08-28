@@ -2,17 +2,18 @@
 % Please edit documentation in R/S3-plotting.R
 \name{plot_test_samples}
 \alias{plot_test_samples}
-\title{Step 3: Plot test sample on MESOMICS MOFA (per model)}
+\title{Step 3: Plot test sample on MESOMICS MOFA (per model) + all sample ternary plot}
 \usage{
 plot_test_samples(
-  models_dir = "output/",
+  models_dir = "output",
   MESOMICS.LFs = system.file("extdata", "MESOMICS_latent_factors.csv", package =
     "MESOMICS"),
   out_plot_dir = file.path(models_dir, "plots"),
   group = "group1",
   n_cor_rows = 120,
   highlight_index = 121,
-  python_bin
+  python_bin,
+  out_ternary_file = file.path(models_dir, "plots", "ternary_plot_all_samples.svg")
 )
 }
 \arguments{
@@ -24,16 +25,19 @@ plot_test_samples(
 
 \item{group}{MOFA group name (default "group1").}
 
-\item{n_cor_rows}{Use first N rows for correlation (default 120).}
+\item{n_cor_rows}{Use first N rows for correlation (default 120).  # (kept as in your docs; logic unchanged)}
 
 \item{highlight_index}{test sample row (default 121).}
 
 \item{python_bin}{Python environment}
+
+\item{out_ternary_file}{File path for the final ternary plot.}
 }
 \value{
-Invisibly returns character vector of written PDF paths.
+Invisibly returns character vector of written per-model PDF paths (unchanged).
 }
 \description{
 For each \code{MOFA-*.hdf5} model, selects two MOFA latent factors by correlation to MESOMICS axes,
 builds a 2D Pareto triangle (3 archetypes), and saves a PDF scatter with the test sample highlighted.
+Additionally, collects the test sample's ternary coordinates across models and plots them at the end.
 }

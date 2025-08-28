@@ -2,7 +2,8 @@
 
 export(add_sample_to_mofa)
 export(collect_testsamples_factors)
-export(plot_test_all_samples)
+export(plot_batch_effects)
+export(plot_factor_violins)
 export(plot_test_samples)
 export(run_1to3)
 export(run_mofa)
