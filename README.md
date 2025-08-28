@@ -6,6 +6,7 @@ This R package provides utilities to project new test samples onto MESOMICS late
 remotes::install_github("lipikakalson/MESOMICS", build_vignettes = FALSE)
 ```
 ## Example Usage
+Downlaod mofa_env.yml.
 
 #### Step 0 : On Terminal
 ```
