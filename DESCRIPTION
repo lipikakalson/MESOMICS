@@ -16,5 +16,4 @@ Suggests:
     rmarkdown
 VignetteBuilder: knitr
 Imports: 
-    basilisk,
     reticulate
