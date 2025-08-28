@@ -4,7 +4,12 @@
 \alias{plot_factor_violins}
 \title{Plot Violin Distributions of Latent Factors}
 \usage{
-plot_factor_violins(meso_factors_path, test_factors_path, out_pdf = NULL)
+plot_factor_violins(
+  meso_factors_path,
+  test_factors_path,
+  out_pdf = NULL,
+  python_bin
+)
 }
 \arguments{
 \item{meso_factors_path}{Path to the MESOMICS latent factors CSV (samples as rows, factors as columns).}

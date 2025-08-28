@@ -13,7 +13,7 @@
 #' @return Invisible NULL; produces a plot.
 #' @export
 
-plot_batch_effects <- function(meso_matrix_path, test_matrix_path, out_pdf = NULL) {
+plot_batch_effects <- function(meso_matrix_path, test_matrix_path, out_pdf = NULL, python_bin) {
 
   reticulate::use_python(python_bin, required = TRUE)
 

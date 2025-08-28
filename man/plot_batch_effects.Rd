@@ -4,7 +4,12 @@
 \alias{plot_batch_effects}
 \title{Plot Batch Effects Using Density of Pairwise Distances}
 \usage{
-plot_batch_effects(meso_matrix_path, test_matrix_path, out_pdf = NULL)
+plot_batch_effects(
+  meso_matrix_path,
+  test_matrix_path,
+  out_pdf = NULL,
+  python_bin
+)
 }
 \arguments{
 \item{meso_matrix_path}{Path to the MESOMICS expression matrix CSV (rows = genes, columns = samples).}
