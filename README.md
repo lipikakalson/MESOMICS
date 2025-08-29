@@ -102,8 +102,8 @@ This function visualizes pairwise distance distributions of MESOMICS vs test sam
 ```
 MESOMICS::plot_batch_effects(meso_matrix_path = meso_gc, 
                              test_matrix_path = test_csv, 
-                             python_bin = python_path)
-
+                             python_bin = python_path
+)
 ```
 
 ### MOFA Latent Factors Violin Plots
