@@ -3,7 +3,7 @@ This R package provides utilities to project new test samples onto MESOMICS late
 
 ### To install the package
 ```
-remotes::install_github("lipikakalson/MESOMICS", build_vignettes = FALSE)
+remotes::install_github("IARCbioinfo/MESOMICS", build_vignettes = FALSE)
 ```
 ## Example Usage
 Downlaod mofa_env.yml.
