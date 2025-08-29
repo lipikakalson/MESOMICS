@@ -32,7 +32,7 @@ out_dir <- file.path('.', "output")
 dir.create(out_dir, recursive = TRUE, showWarnings = FALSE)
 out_dir
 
-Sys.setenv(MESOMICS_PYTHON = "/path/to/your/env/python")
+Sys.setenv(MESOMICS_PYTHON = "/path/to/your/env/python") #output of 'which python'
 python_path <- Sys.getenv("MESOMICS_PYTHON", unset = NA)
 ```
 
@@ -40,6 +40,7 @@ python_path <- Sys.getenv("MESOMICS_PYTHON", unset = NA)
 This function adds test sample to MESOMICS samples, one at a time and saves the updated (MESOMICS+1test) file as .Rdata file.
 ```
 print('Starting Step 1')
+
 MESOMICS::add_sample_to_mofa(
   test_matrix_path = test_csv,
   mofa_dir         = mofa_dir,
@@ -52,6 +53,7 @@ MESOMICS::add_sample_to_mofa(
 This function runs MOFA on updated .Rdata file generated in Step1.
 ```
 print('Starting Step 2')
+
 MESOMICS::run_mofa(
   inputs_dir       = out_dir,   # <— where Step 1 wrote .RData
   outdir           = out_dir,  # <— where to write MOFA-<sample>.hdf5
@@ -63,6 +65,7 @@ This function plots each test sample in MOFA space using the two MOFA factors mo
 After processing all models, it aggregates the highlighted test-sample’s archetype weights and saves one ternary plot showing all test samples relative to the three archetypes.
 ```
 print('Starting Step 3')
+
 MESOMICS::plot_test_samples(
   models_dir   = out_dir,     
   MESOMICS.LFs = meso_csv,
@@ -87,26 +90,31 @@ MESOMICS::run_1to3(
 ### Latent factors of test samples
 This functions extracts and saves the MOFA latent factors of all test samples into a single text file.
 ```
-MESOMICS::collect_testsamples_factors(
-  models_dir   = out_dir
+test_factors_file <- file.path(out_dir, "test_samples_factors.tsv")
+
+MESOMICS::collect_testsamples_factors(models_dir   = out_dir, 
+                                      outfile   = test_factors_file
 )
 ```
 
 ### To check for Batch effect - Density curves
 This function visualizes pairwise distance distributions of MESOMICS vs test samples to detect potential batch effects.
 ```
-MESOMICS::plot_batch_effects(
-  meso_matrix_path = meso_gc, 
-  test_matrix_path = test_csv, 
-  python_bin = python_path)
+MESOMICS::plot_batch_effects(meso_matrix_path = meso_gc, 
+                             test_matrix_path = test_csv, 
+                             python_bin = python_path)
+
 ```
 
 ### MOFA Latent Factors Violin Plots
 This function compares MOFA latent factor distributions between MESOMICS and test samples using violin plots.
 ```
-MESOMICS::plot_factor_violins(
-  meso_factors_path = meso_csv, 
-  test_factors_path = '/output/of/collect_testsamples_factors',
-  python_bin   = python_path)
+MESOMICS::plot_factor_violins(meso_factors_path = meso_csv, 
+                             test_factors_path = test_factors_file,
+                             python_bin   = python_path
+
+)
+
+)
 ```
 
