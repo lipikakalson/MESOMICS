@@ -4,11 +4,7 @@
 \alias{collect_testsamples_factors}
 \title{Collect test-sample factor rows from MOFA HDF5 models.}
 \usage{
-collect_testsamples_factors(
-  models_dir = "output/",
-  outfile = "test-samples-mofa_factors.txt",
-  group = "group1"
-)
+collect_testsamples_factors(models_dir = "output", outfile, group = "group1")
 }
 \arguments{
 \item{models_dir}{Directory containing MOFA-*.hdf5 from 'run_mofa'.}

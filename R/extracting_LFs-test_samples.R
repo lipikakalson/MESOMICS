@@ -10,8 +10,8 @@
 #' @return Invisibly returns the data.frame that was written.
 #' @export
 collect_testsamples_factors <- function(
-    models_dir = "output/",
-    outfile    = "test-samples-mofa_factors.txt",
+    models_dir = "output",
+    outfile,
     group      = "group1"
 ) {
   model_files <- list.files(models_dir, pattern = "\\.hdf5$", full.names = TRUE)
@@ -33,7 +33,7 @@ collect_testsamples_factors <- function(
 
   utils::write.table(
     all_factors,
-    file      = file.path(models_dir, outfile),
+    file      = outfile,
     row.names = FALSE,
     sep       = "\t",
     quote     = FALSE

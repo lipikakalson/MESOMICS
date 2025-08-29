@@ -1,3 +1,4 @@
+/data/mesomics/work/mesomics2/lipikal/lipikal-2025/MESOMICS/DESCRIPTION="313F2E07"
 /data/mesomics/work/mesomics2/lipikal/lipikal-2025/MESOMICS/R/S1-add_sample.R="DF1A2908"
 /data/mesomics/work/mesomics2/lipikal/lipikal-2025/MESOMICS/R/S2-run_MOFA.R="BCD2AC5D"
 /data/mesomics/work/mesomics2/lipikal/lipikal-2025/MESOMICS/R/S3-plotting.R="666AC882"
@@ -6,6 +7,4 @@
 /data/mesomics/work/mesomics2/lipikal/lipikal-2025/MESOMICS/R/run_1to3.R="61E14B00"
 /data/mesomics/work/mesomics2/lipikal/lipikal-2025/MESOMICS/inst/extdata/MESOMICS_latent_factors.csv="362F7D09"
 /data/mesomics/work/mesomics2/lipikal/lipikal-2025/MESOMICS/mofa_env.yml="FF2D795C"
-/data/mesomics/work/mesomics2/lipikal/lipikal-2025/MESOMICS/vignettes/MESOMICS-workflow.R="6894A141"
-/data/mesomics/work/mesomics2/lipikal/lipikal-2025/MESOMICS/vignettes/MESOMICS-workflow.Rmd="D9B4E654"
-/data/mesomics/work/mesomics2/lipikal/lipikal-2025/MESOMICS/vignettes/MESOMICS-workflow.html="9AA7EF44"
+/data/mesomics/work/mesomics2/lipikal/lipikal-2025/MESOMICS/vignettes/Mesomics-Workflow.Rmd="45915347"
