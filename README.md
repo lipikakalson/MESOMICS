@@ -112,9 +112,6 @@ This function compares MOFA latent factor distributions between MESOMICS and tes
 MESOMICS::plot_factor_violins(meso_factors_path = meso_csv, 
                              test_factors_path = test_factors_file,
                              python_bin   = python_path
-
-)
-
 )
 ```
 
